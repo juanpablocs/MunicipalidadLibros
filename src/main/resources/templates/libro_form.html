@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${title} ?: 'Muni'">Muni Libros</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <base href="/" />
+</head>
+<body>
+<!-- header -->
+
+	<main class="container mt-4">
+	  
+
+		<h2 class="section-title" th:text="'Crear Libro'"></h2>
+			
+	    <form th:action="@{/registro}" method="post">
+	        <div class="mb-3">
+	            <label for="nombre" class="form-label">Nombres</label>
+	            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre Libro" required>
+	        </div>
+	        <div class="mb-3">
+	            <label for="autor" class="form-label">Autor</label>
+	            <input type="text" class="form-control" id="autor" name="autor" placeholder="Autor" required>
+	        </div>
+	        <div class="mb-3">
+	            <label for="fechaPublicacion" class="form-label">Fecha Publicacion</label>
+	            <input type="date" class="form-control" id="fechaPublicacion" name="fechaPublicacion" placeholder="Fecha" required>
+	        </div>
+	        <div class="mb-3">
+	            <label for="genero" class="form-label">Genero</label>
+	            <select class="form-select" id="genero" name="genero">
+	            	<option>Seleccione</option>
+					<option th:each="category: ${genres}" th:value="${category.id}" th:text="${category.nombre}"></option>
+	            </select>
+	        </div>
+	        <button type="submit" class="btn btn-primary">Publicar Libro</button>
+	    </form>   
+		
+		
+	</main>	
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${title} ?: 'Muni'">Muni Libros</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <base href="/" />
+</head>
+<body>
+<!-- header -->
+
+	<main class="container mt-4">
+	  
+
+			<h2 class="section-title" th:text="'Municipalidad de Lima'"></h2>
+			
+	        
+	        <div class="d-flex justify-content-between align-items-center mb-4 mt-3">
+		        <h2 class="section-title">Libros</h2>
+		        <a href="/registro" class="btn btn-primary">+ Añadir Nuevo</a>
+		        <a href="/registro" class="btn btn-secondary">Generar Reporte</a>
+		    </div>
+		
+		    <table class="table">
+		        <thead class="table-dark">
+		            <tr>
+		                <th width="40%">Nombre</th>
+		                <th width="20%">Autor</th>
+		                <th width="10%">Genero</th>
+		                <th width="20%">Fecha Publicacion</th>
+		                <th width="10%">Acciones</th>
+		            </tr>
+		        </thead>
+		        <tbody>
+		            <tr th:each="product : ${libros}">
+					    <td th:text="${product.nombre}">Nombre del libro</td>
+					    <td th:text="${product.autor}"></td>
+					    <td th:text="${product.genero.nombre}"></td>
+					    <td th:text="${product.fechaPublicacion}"></td>
+					    <td>
+					        <a th:href="@{'/edit/' + ${product.id}}" class="btn btn-warning btn-sm">
+					            <span class="fa fa-pencil"></span>
+					        </a>
+					        <a th:href="@{'/delete/' + ${product.id}}" class="btn btn-danger btn-sm">
+					            <span class="fa fa-trash"></span>
+					        </a>
+					    </td>
+					</tr>
+		        </tbody>
+		    </table>
+
+		
+	</main>	
+
+</body>
+</html>
